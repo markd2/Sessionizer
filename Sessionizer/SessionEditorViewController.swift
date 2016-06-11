@@ -1,6 +1,26 @@
 
 import UIKit
 
+
+enum Action: Int {
+    // These correlate to the button tags in the storyboard
+    case Cool = 0
+    case Important = 1
+    case Note = 2
+    case WTF = 3
+    case ZZZZ = 4
+    
+    func name() -> String {
+        switch self {
+        case Cool: return "Cool"
+        case Important: return "Important"
+        case Note: return "Note"
+        case WTF: return "WTF"
+        case ZZZZ: return "ZZZZ"
+        }
+    }
+}
+
 class SessionEditorViewController: UIViewController {
     
     var sessionTimer: NSTimer?
@@ -24,7 +44,17 @@ class SessionEditorViewController: UIViewController {
     
     
     @IBAction func logMessage(sender: UIButton) {
-        print("logging for \(sender.tag)")
+        let tag = sender.tag
+        guard let action = Action(rawValue: tag) else {
+            print("unexpected button tag: \(tag).  No corresponding enum")
+            return
+        }
+        logAction(action)
+    }
+    
+    
+    func logAction(action: Action) {
+        print("Got \(action.name())")
     }
     
     
