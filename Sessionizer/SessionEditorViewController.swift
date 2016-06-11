@@ -28,6 +28,9 @@ class SessionEditorViewController: UIViewController {
     
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var commentTextField: UITextField!
+    @IBOutlet var documentTextView: UITextView!
+    
+    var documentText: String = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,9 +62,12 @@ class SessionEditorViewController: UIViewController {
         let actionName = action.name()
         let commentText = commentTextField.text
 
-        let textToLog = "\(nowLabelText) \(actionName) \(commentText ?? "")"
+        let textToLog = "\(nowLabelText) \(actionName) \(commentText ?? "")\n"
         
         print("\(textToLog)")
+        documentText += textToLog
+        
+        documentTextView.text = documentText
         
         commentTextField.text = ""
         commentTextField.resignFirstResponder()
@@ -89,7 +95,6 @@ extension SessionEditorViewController {
             NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, 
                                                    selector: #selector(SessionEditorViewController.lubDub(_:)), 
                                                    userInfo: nil, repeats: true)
-        
     }
     
     func stopTimer() {
@@ -100,6 +105,4 @@ extension SessionEditorViewController {
     func lubDub(timer: NSTimer) {
         timeLabel.text = labelTextForElapsedTime()
     }
-    
-    
 }
