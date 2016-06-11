@@ -167,6 +167,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="commentTextField" destination="Ch6-4e-frD" id="CS8-6h-etv"/>
                         <outlet property="timeLabel" destination="zGH-BH-nrm" id="ayZ-EB-CJp"/>
                         <outlet property="view" destination="zGH-BH-nrm" id="u1G-vv-vEk"/>
                     </connections>

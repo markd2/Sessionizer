@@ -12,11 +12,11 @@ enum Action: Int {
     
     func name() -> String {
         switch self {
-        case Cool: return "Cool"
+        case Cool: return "Cool     "
         case Important: return "Important"
-        case Note: return "Note"
-        case WTF: return "WTF"
-        case ZZZZ: return "ZZZZ"
+        case Note: return "Note     "
+        case WTF: return "WTF      "
+        case ZZZZ: return "ZZZZ     "
         }
     }
 }
@@ -27,6 +27,7 @@ class SessionEditorViewController: UIViewController {
     let startTime = NSDate().timeIntervalSince1970
     
     @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var commentTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,17 +55,28 @@ class SessionEditorViewController: UIViewController {
     
     
     func logAction(action: Action) {
-        print("Got \(action.name())")
+        let nowLabelText = labelTextForElapsedTime()
+        let actionName = action.name()
+        let commentText = commentTextField.text
+
+        let textToLog = "\(nowLabelText) \(actionName) \(commentText ?? "")"
+        
+        print("\(textToLog)")
+        
+        commentTextField.text = ""
+        commentTextField.resignFirstResponder()
     }
     
     
-    func updateTimeLabel(time: NSTimeInterval) {
-        let hours = Int(time) / (60 * 60)
-        let minutes = (Int(time) - (hours * 60 * 60)) / 60
-        let seconds = Int(time) - (hours * 60 * 60) - minutes * 60
+    func labelTextForElapsedTime() -> String {
+        let elapsedTime = NSDate().timeIntervalSince1970 - startTime
+        
+        let hours = Int(elapsedTime) / (60 * 60)
+        let minutes = (Int(elapsedTime) - (hours * 60 * 60)) / 60
+        let seconds = Int(elapsedTime) - (hours * 60 * 60) - minutes * 60
         
         let text = NSString.init(format: "%02d:%02d:%02d", hours, minutes, seconds) as String
-        timeLabel.text = text
+        return text
     }
     
 }
@@ -86,8 +98,7 @@ extension SessionEditorViewController {
     }
     
     func lubDub(timer: NSTimer) {
-        let elapsedTime = NSDate().timeIntervalSince1970 - startTime
-        updateTimeLabel(elapsedTime)
+        timeLabel.text = labelTextForElapsedTime()
     }
     
     
