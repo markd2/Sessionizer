@@ -13,6 +13,7 @@
 		7DEB55EB1D0C53730015DE7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DEB55EA1D0C53730015DE7C /* Assets.xcassets */; };
 		7DEB55EE1D0C53730015DE7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DEB55EC1D0C53730015DE7C /* LaunchScreen.storyboard */; };
 		7DEB55F91D0C53730015DE7C /* SessionizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB55F81D0C53730015DE7C /* SessionizerTests.swift */; };
+		7DEB56041D0C580D0015DE7C /* SessionEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB56031D0C580D0015DE7C /* SessionEditorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		7DEB55F41D0C53730015DE7C /* SessionizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SessionizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DEB55F81D0C53730015DE7C /* SessionizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionizerTests.swift; sourceTree = "<group>"; };
 		7DEB55FA1D0C53730015DE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DEB56031D0C580D0015DE7C /* SessionEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionEditorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		7DEB55E21D0C53730015DE7C /* Sessionizer */ = {
 			isa = PBXGroup;
 			children = (
+				7DEB56031D0C580D0015DE7C /* SessionEditorViewController.swift */,
 				7DEB55E31D0C53730015DE7C /* AppDelegate.swift */,
 				7DEB55E51D0C53730015DE7C /* ViewController.swift */,
 				7DEB55E71D0C53730015DE7C /* Main.storyboard */,
@@ -199,6 +202,7 @@
 			files = (
 				7DEB55E61D0C53730015DE7C /* ViewController.swift in Sources */,
 				7DEB55E41D0C53730015DE7C /* AppDelegate.swift in Sources */,
+				7DEB56041D0C580D0015DE7C /* SessionEditorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +394,7 @@
 				7DEB55FF1D0C53730015DE7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7DEB56001D0C53730015DE7C /* Build configuration list for PBXNativeTarget "SessionizerTests" */ = {
 			isa = XCConfigurationList;
@@ -398,6 +403,7 @@
 				7DEB56021D0C53730015DE7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
