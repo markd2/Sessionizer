@@ -30,6 +30,8 @@ class SessionEditorViewController: UIViewController {
     @IBOutlet var commentTextField: UITextField!
     @IBOutlet var documentTextView: UITextView!
     
+    var filename = "\(NSUUID().UUIDString).txt"
+    
     var documentText: String = String()
     
     override func viewDidLoad() {
@@ -46,6 +48,13 @@ class SessionEditorViewController: UIViewController {
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         stopTimer()
+    }
+    
+    func saveFile() {
+        let fm = NSFileManager.defaultManager()
+        let documentDirectory = try! fm.URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
+        let fileURL = documentDirectory.URLByAppendingPathComponent(filename)
+        try! documentText.writeToURL(fileURL, atomically: true, encoding: NSUTF8StringEncoding)
     }
     
     
@@ -66,10 +75,10 @@ class SessionEditorViewController: UIViewController {
 
         let textToLog = "\(nowLabelText) \(actionName) \(commentText ?? "")\n"
         
-        print("\(textToLog)")
         documentText += textToLog
         
         documentTextView.text = documentText
+        saveFile()
         
         commentTextField.text = ""
         commentTextField.resignFirstResponder()
