@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2ek-p5-Mef">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Sessionizer-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Sessionizer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,163 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wk-6y-yYl">
+                                <rect key="frame" x="20" y="77" width="87" height="30"/>
+                                <state key="normal" title="New session"/>
+                                <connections>
+                                    <segue destination="v2e-Hb-lJV" kind="show" id="WzT-Je-ELr"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WkZ-86-RXm">
+                                <rect key="frame" x="0.0" y="167" width="600" height="433"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="rze-zk-7Zm"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Rzz-NC-G5L"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Existing sessions will go here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa6-ry-m5l">
+                                <rect key="frame" x="9" y="138" width="222" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WkZ-86-RXm" secondAttribute="bottom" id="4vg-6g-KG5"/>
+                            <constraint firstItem="WkZ-86-RXm" firstAttribute="top" secondItem="Pa6-ry-m5l" secondAttribute="bottom" constant="8" id="ATV-HY-kR1"/>
+                            <constraint firstItem="4wk-6y-yYl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="F6X-aM-KYM"/>
+                            <constraint firstItem="4wk-6y-yYl" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="13" id="HIV-kh-Hly"/>
+                            <constraint firstItem="WkZ-86-RXm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="U0V-l9-jgr"/>
+                            <constraint firstItem="Pa6-ry-m5l" firstAttribute="top" secondItem="4wk-6y-yYl" secondAttribute="bottom" constant="31" id="Z11-eE-9bt"/>
+                            <constraint firstItem="Pa6-ry-m5l" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-11" id="hvX-Y1-wOk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WkZ-86-RXm" secondAttribute="trailing" constant="-20" id="mdi-YC-Yq5"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Sessionizer" id="7iW-jc-As8"/>
+                    <connections>
+                        <outlet property="sessionsTableView" destination="WkZ-86-RXm" id="O3X-83-GKk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1090" y="399"/>
+        </scene>
+        <!--Session Editor View Controller-->
+        <scene sceneID="VlP-uR-jDW">
+            <objects>
+                <viewController id="v2e-Hb-lJV" customClass="SessionEditorViewController" customModule="Sessionizer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Dgc-8F-NRc"/>
+                        <viewControllerLayoutGuide type="bottom" id="TTt-dc-ycr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6AI-NI-g6z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Session contents go here / read-only" translatesAutoresizingMaskIntoConstraints="NO" id="hnb-Ip-HuS">
+                                <rect key="frame" x="0.0" y="216" width="600" height="384"/>
+                                <color key="backgroundColor" red="0.93691078910614523" green="0.93691078910614523" blue="0.93691078910614523" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ch6-4e-frD">
+                                <rect key="frame" x="9" y="122" width="373" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comment (optional)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Saa-ch-dZ3">
+                                <rect key="frame" x="20" y="72" width="152" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxJ-r7-O5o">
+                                <rect key="frame" x="9" y="168" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.95314682262569828" green="0.95314682262569828" blue="0.95314682262569828" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="cool"/>
+                                <connections>
+                                    <action selector="logMessage:" destination="v2e-Hb-lJV" eventType="touchUpInside" id="3JO-EL-E80"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfm-LM-ZX1">
+                                <rect key="frame" x="60" y="168" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.95314682262569828" green="0.95314682262569828" blue="0.95314682262569828" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="important"/>
+                                <connections>
+                                    <action selector="logMessage:" destination="v2e-Hb-lJV" eventType="touchUpInside" id="1bC-Qw-2MQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05c-2c-2TW">
+                                <rect key="frame" x="111" y="168" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.95314682262569828" green="0.95314682262569828" blue="0.95314682262569828" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="note"/>
+                                <connections>
+                                    <action selector="logMessage:" destination="v2e-Hb-lJV" eventType="touchUpInside" id="RBf-8H-9aX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8K9-98-ED8">
+                                <rect key="frame" x="162" y="168" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.95314682262569828" green="0.95314682262569828" blue="0.95314682262569828" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="wtf"/>
+                                <connections>
+                                    <action selector="logMessage:" destination="v2e-Hb-lJV" eventType="touchUpInside" id="794-aF-fW6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzy-RX-ciV">
+                                <rect key="frame" x="213" y="168" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.95314682262569828" green="0.95314682262569828" blue="0.95314682262569828" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="zzzz"/>
+                                <connections>
+                                    <action selector="logMessage:" destination="v2e-Hb-lJV" eventType="touchUpInside" id="Qyi-ED-m7O"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGH-BH-nrm">
+                                <rect key="frame" x="201" y="64" width="176" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.88554032821229045" green="0.88554032821229045" blue="0.88554032821229045" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="commentTextField" destination="Ch6-4e-frD" id="CS8-6h-etv"/>
+                        <outlet property="documentTextView" destination="hnb-Ip-HuS" id="64R-n9-lwR"/>
+                        <outlet property="timeLabel" destination="zGH-BH-nrm" id="ayZ-EB-CJp"/>
+                        <outlet property="view" destination="zGH-BH-nrm" id="u1G-vv-vEk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lWi-45-J3C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1766" y="384"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="o0Z-yz-fCm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2ek-p5-Mef" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oed-V0-HIE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="te5-IG-fwg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kFJ-xu-pxe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="278" y="399"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cool" width="40" height="40"/>
+        <image name="important" width="40" height="40"/>
+        <image name="note" width="40" height="40"/>
+        <image name="wtf" width="40" height="40"/>
+        <image name="zzzz" width="40" height="40"/>
+    </resources>
 </document>
