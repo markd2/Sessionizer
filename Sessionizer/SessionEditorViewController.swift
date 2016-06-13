@@ -34,6 +34,8 @@ class SessionEditorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        documentTextView.text = ""
+        documentTextView.selectable = false
     }
     
     override func viewDidAppear(animated: Bool) {
